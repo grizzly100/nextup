@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
-# Simple in-memory storage (will reset on restart)
+# Task storage (persisted to JSON file)
 tasks = []
 next_id = 1
 
@@ -110,4 +110,7 @@ def health_check():
 
 if __name__ == '__main__':
     load_tasks()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Debug mode should be False in production
+    import os
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)

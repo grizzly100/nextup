@@ -73,6 +73,11 @@ pip install -r requirements.txt
 python app.py
 ```
 
+To enable debug mode during development (not recommended for production):
+```bash
+FLASK_DEBUG=true python app.py
+```
+
 The backend will start on `http://localhost:5000`
 
 ### Frontend Setup
